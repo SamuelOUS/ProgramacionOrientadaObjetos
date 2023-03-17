@@ -1,29 +1,37 @@
 from dataclasses import dataclass, field
 import typing
 
-class BlackJack:
-    def __init__(self):
-        self.apuesta_actual: int = 0
-        self.jugador: typing.Optional[Jugador] = None
-        self.cupier: typing.Optional[Casa] = None
-        self.baraja: Baraja()
-        
+
+
+
 class Mano:
-    pass
+    def __init__(self, cartas: tuple):
+        self.cartas: list[cartas] = []
+        self.cartas.extend(cartas)
+
+    def es_blackjack(self) -> bool:
+        pass
+
 
 @dataclass
 class Jugador:
     fichas: int
     Nombre: str
     mano: Mano = field(default=None, init=False)
-    
+
+    def hacer_jugada(self):
+        pass
+
 
 @dataclass
 class Casa:
     mano: Mano = field(default=None, init=False)
-    
-class Baraja:
-    pass
+
+    def hacer_jugada(self):
+        pass
+
+
+
 
 
 @dataclass
@@ -31,4 +39,31 @@ class Carta:
     pinta: str
     valor: str
     tapada: bool = False
+    VALOR = typing.ClassVar[list[str]] = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+    PINTA = typing.ClassVar[list[str]] = ["CORAZONES","PICAS","TREBOLE","DIAMANTES"]
 
+class BlackJack:
+    def __init__(self):
+        self.apuesta_actual: int = 0
+        self.jugador: typing.Optional[Jugador] = None
+        self.cupier: typing.Optional[Casa] = None
+        self.baraja: Baraja()
+
+    def determinar_ganador(self, jugador, casa):
+        pass
+
+    def modificar_fichas(self, jugador, fichas):
+        pass
+    def empate(self, jugador, casa):
+        pass
+    def finalizar_juego(self):
+        pass
+class Baraja:
+    def __init__(self):
+        self.cartas: list[Carta] = []
+        for pinta in Carta.PINTA:
+            for valor in Carta.VALOR:
+                self.cartas.append(Carta(pinta,valor))
+                
+    def revolver(self,cartas: list[Carta]):
+        pass
