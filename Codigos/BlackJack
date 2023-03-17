@@ -1,0 +1,34 @@
+from dataclasses import dataclass, field
+import typing
+
+class BlackJack:
+    def __init__(self):
+        self.apuesta_actual: int = 0
+        self.jugador: typing.Optional[Jugador] = None
+        self.cupier: typing.Optional[Casa] = None
+        self.baraja: Baraja()
+        
+class Mano:
+    pass
+
+@dataclass
+class Jugador:
+    fichas: int
+    Nombre: str
+    mano: Mano = field(default=None, init=False)
+    
+
+@dataclass
+class Casa:
+    mano: Mano = field(default=None, init=False)
+    
+class Baraja:
+    pass
+
+
+@dataclass
+class Carta:
+    pinta: str
+    valor: str
+    tapada: bool = False
+
